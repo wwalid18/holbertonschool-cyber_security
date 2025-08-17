@@ -1,2 +1,2 @@
 #!/bin/bash
-whois $1 | awk -F': ' '/^(Registrant|Admin|Tech) (Organization|State\/Province|Country|Email):/ {gsub(/^[ \t]+|[ \t]+$/,"",$2); print $1" "$2","$3}' > $1.csv
+whois $1 | awk -F': ' 'BEGIN{split("Registrant Organization,Registrant State/Province,Registrant Country,Registrant Email,Admin Organization,Admin State/Province,Admin Country,Admin Email,Tech Organization,Tech State/Province,Tech Country,Tech Email",f,",");for(i in f)v[f[i]]=""} /^(Registrant|Admin|Tech) (Organization|State\/Province|Country|Email):/ {gsub(/^[ \t]+|[ \t]+$/,"",$2);v[$1]=$2} END{for(i=1;i<=length(f);i++)print f[i]","v[f[i]]}' > $1.csv
