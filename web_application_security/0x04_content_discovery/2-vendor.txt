@@ -1,1 +1,1 @@
-https://seantheme.com/hud-nextjs/
+https://seantheme.com/hud-django/
