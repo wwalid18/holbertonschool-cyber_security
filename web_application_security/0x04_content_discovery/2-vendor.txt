@@ -1,1 +1,1 @@
-https://seantheme.com/hud-django/
+https://seantheme.com/hud-svelte/
