@@ -1,1 +1,1 @@
-https://seantheme.com/hud-svelte/
+https://seantheme.com/hud-vue/
