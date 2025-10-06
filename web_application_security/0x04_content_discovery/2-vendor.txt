@@ -1,1 +1,1 @@
-https://seantheme.com/hud-vue/
+https://seantheme.com/hud-laravel/
