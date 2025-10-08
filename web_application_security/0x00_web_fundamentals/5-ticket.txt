@@ -1,4 +1,4 @@
-GET /ticket?id=5 HTTP/1.1
+GET /ticket?id=1 HTTP/1.1
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 Accept-Encoding: gzip, deflate
 Accept-Language: en-GB,en-US;q=0.9,en;q=0.8,fr;q=0.7,ar;q=0.6
