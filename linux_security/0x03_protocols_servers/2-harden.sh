@@ -1,2 +1,2 @@
 #!/bin/bash
-find / -type d -perm -0002 -ls 2>/dev/null | awk '{print $11}'
+find / -xdev -type d -perm -0002 ! -path "/proc/*" 2>/dev/null
