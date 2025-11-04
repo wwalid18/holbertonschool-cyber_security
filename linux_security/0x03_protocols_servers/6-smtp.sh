@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo postconf -n | grep -i starttls || echo "STARTTLS not configured"
+sudo postconf -n | grep "^smtpd_tls_security_level" || echo "STARTTLS not configured"
