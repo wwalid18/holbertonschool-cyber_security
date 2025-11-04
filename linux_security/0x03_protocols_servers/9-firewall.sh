@@ -1,2 +1,3 @@
 #!/bin/bash
-sudo iptables -F && iptables -A INPUT -p tcp --dport 22 -j ACCEPT && iptables -A INPUT -j DROP
+sudo iptables -F; sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+sudo iptables -A INPUT -j DROP
