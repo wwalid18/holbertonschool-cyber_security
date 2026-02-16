@@ -1,38 +1,48 @@
 #!/usr/bin/env ruby
+
 require 'net/http'
 require 'uri'
 require 'json'
 
+# Method to make an HTTP POST request
+# Parameters:
+#   url - the URL to send the POST request to
+#   body_params - hash of parameters to include in the request body
 def post_request(url, body_params = {})
-  uri = URI(url)
-  http = Net::HTTP.new(uri.host, uri.port)
-  http.use_ssl = uri.scheme == 'https'
-
-  request = Net::HTTP::Post.new(uri.path, { 'Content-Type' => 'application/json' })
-  request.body = body_params.to_json unless body_params.empty?
-
-  response = http.request(request)
-
-  puts "Response status: #{response.code} #{response.message}"
-  puts "Response body:"
-
   begin
-    json_body = JSON.parse(response.body)
-
-    # Custom pretty print: one key per line, no indentation
-    puts "{"
-    json_body.each_with_index do |(k, v), i|
-      comma = i == json_body.size - 1 ? "" : ","
-      if v.is_a?(String)
-        puts %("#{k}": "#{v}"#{comma})
-      else
-        puts %("#{k}": #{v}#{comma})
-      end
+    # Parse the URL
+    uri = URI.parse(url)
+    
+    # Create HTTP client
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (uri.scheme == 'https')
+    
+    # Create POST request
+    request = Net::HTTP::Post.new(uri.path)
+    request['Content-Type'] = 'application/json'
+    
+    # Add body parameters if provided
+    request.body = body_params.to_json unless body_params.empty?
+    
+    # Send the request
+    response = http.request(request)
+    
+    # Print response status
+    puts "Response status: #{response.code} #{response.message}"
+    
+    # Print response body
+    puts 'Response body:'
+    
+    # Try to pretty print JSON response if possible
+    begin
+      parsed_body = JSON.parse(response.body)
+      puts JSON.pretty_generate(parsed_body)
+    rescue
+      # If response is not valid JSON, print as is
+      puts response.body
     end
-    puts "}"  # closing brace
-    puts      # <-- **add an extra newline at the end**
-  rescue JSON::ParserError
-    puts response.body
-    puts      # <-- also ensure newline here
+    
+  rescue StandardError => e
+    puts "Error: #{e.message}"
   end
 end
