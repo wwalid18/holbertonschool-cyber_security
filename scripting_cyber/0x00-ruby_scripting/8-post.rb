@@ -29,8 +29,10 @@ def post_request(url, body_params = {})
         puts %("#{k}": #{v}#{comma})
       end
     end
-    puts "}"
+    puts "}"  # closing brace
+    puts      # <-- **add an extra newline at the end**
   rescue JSON::ParserError
     puts response.body
+    puts      # <-- also ensure newline here
   end
 end
