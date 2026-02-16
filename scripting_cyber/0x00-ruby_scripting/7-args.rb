@@ -6,13 +6,8 @@ def print_arguments
     puts 'No arguments provided.'
   else
     puts 'Arguments:'
-    puts
-    ARGV.each_with_index do |arg, index|
-      if index == ARGV.length - 1
-        print "#{index + 1}. #{arg}"
-      else
-        puts "#{index + 1}. #{arg}"
-      end
+    ARGV.each do |arg|
+      puts arg
     end
   end
 end
