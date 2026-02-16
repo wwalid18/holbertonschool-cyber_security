@@ -9,10 +9,14 @@ def print_arguments
     all_numbers = ARGV.all? { |arg| arg.match?(/^\d+$/) }
     
     puts 'Arguments:' if all_numbers
-    puts if all_numbers  # Add blank line after Arguments:
+    puts if all_numbers  # Blank line after Arguments:
     
     ARGV.each_with_index do |arg, index|
-      puts "#{index + 1}. #{arg}"
+      if index == ARGV.length - 1
+        print "#{index + 1}. #{arg}"
+      else
+        puts "#{index + 1}. #{arg}"
+      end
     end
   end
 end
