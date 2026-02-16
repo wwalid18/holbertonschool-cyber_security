@@ -6,7 +6,7 @@ def print_arguments
     return
   end
 
-  puts "Arguments:\n"
+  puts "Arguments:\n\n"
   ARGV.each do |arg|
     puts arg
   end
