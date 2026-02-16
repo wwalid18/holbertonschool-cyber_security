@@ -5,9 +5,14 @@ def print_arguments
   if ARGV.empty?
     puts 'No arguments provided.'
   else
-    print "Arguments:\n\n"
+    puts 'Arguments:'
+    puts
     ARGV.each_with_index do |arg, index|
-      puts "#{index + 1}. #{arg}"
+      if index == ARGV.length - 1
+        print "#{index + 1}. #{arg}"
+      else
+        puts "#{index + 1}. #{arg}"
+      end
     end
   end
 end
