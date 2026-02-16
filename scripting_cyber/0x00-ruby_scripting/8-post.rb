@@ -18,7 +18,18 @@ def post_request(url, body_params = {})
 
   begin
     json_body = JSON.parse(response.body)
-    puts JSON.generate(json_body)
+
+    # Custom pretty print: one key per line, no indentation
+    puts "{"
+    json_body.each_with_index do |(k, v), i|
+      comma = i == json_body.size - 1 ? "" : ","
+      if v.is_a?(String)
+        puts %("#{k}": "#{v}"#{comma})
+      else
+        puts %("#{k}": #{v}#{comma})
+      end
+    end
+    puts "}"
   rescue JSON::ParserError
     puts response.body
   end
