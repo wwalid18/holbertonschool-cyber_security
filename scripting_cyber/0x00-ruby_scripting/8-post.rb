@@ -33,10 +33,14 @@ def post_request(url, body_params = {})
     # Print response body
     puts 'Response body:'
     
-    # Try to pretty print JSON response if possible
+    # Parse and print JSON response in compact form
     begin
       parsed_body = JSON.parse(response.body)
-      puts JSON.pretty_generate(parsed_body)
+      if parsed_body.empty?
+        puts '{}'
+      else
+        puts JSON.pretty_generate(parsed_body)
+      end
     rescue
       # If response is not valid JSON, print as is
       puts response.body
